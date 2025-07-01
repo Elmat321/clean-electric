@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroClean - Aspiradora Inteligente</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a1a1a, #333333);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: #4CAF50;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #4CAF50;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background-color: #3e8e41;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-color: #4CAF50;
+        }
+        
+        .feature-icon {
+            font-size: 50px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        
+        /* Product Showcase */
+        .product-showcase {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .product-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .product-image {
+            flex: 1;
+            text-align: center;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+        
+        .product-info {
+            flex: 1;
+        }
+        
+        .product-info h2 {
+            font-size: 36px;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        .product-info ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .product-info ul li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .product-info ul li::before {
+            content: '✓';
+            color: #4CAF50;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .price {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        
+        .discount {
+            background-color: #f44336;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        
+        .discount-badge {
+            background-color: #f44336;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .testimonial-card .quote {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .client-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        .client-name {
+            font-weight: bold;
+        }
+        
+        .client-rating {
+            color: #FFD700;
+            margin-top: 5px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1a1a1a, #333333);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        .cta p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-white {
+            background-color: white;
+            color: #1a1a1a;
+        }
+        
+        .btn-white:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #aaa;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #4CAF50;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 10px 15px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .product-container {
+                flex-direction: column;
+            }
+            
+            .product-image {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Electro<span>Clean</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#features">Características</a></li>
+                    <li><a href="#product">Producto</a></li>
+                    <li><a href="#testimonials">Opiniones</a></li>
+                    <li><a href="#cta" class="btn">Comprar Ahora</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>ElectroClean Pro</h1>
+            <p>La aspiradora inteligente más potente y eficiente del mercado. Tecnología de última generación para un hogar impecable.</p>
+            <a href="#product" class="btn">Ver Oferta</a>
+        </div>
+    </section>
+    
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tecnología Innovadora</h2>
+                <p>Descubre lo que hace especial a ElectroClean</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Potencia Industrial</h3>
+                    <p>Motor de 2500W con sistema de succión ciclónica avanzada para eliminar hasta el polvo más fino.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Inteligencia Artificial</h3>
+                    <p>Navegación inteligente que aprende la distribución de tu hogar para limpiezas más eficientes.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔋</div>
+                    <h3>Autonomía Extendida</h3>
+                    <p>Batería de larga duración (hasta 150 minutos) con carga rápida en solo 2 horas.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎵</div>
+                    <h3>Control por Voz</h3>
+                    <p>Compatible con Alexa, Google Assistant y Siri. Controla la limpieza con simples comandos de voz.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌿</div>
+                    <h3>Filtración HEPA 13</h3>
+                    <p>Atrapa el 99.97% de partículas de hasta 0.3 micrones, ideal para alérgicos y mascotas.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>App Inteligente</h3>
+                    <p>Programa limpiezas, establece zonas prohibidas y monitoriza el progreso desde tu smartphone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="product-showcase" id="product">
+        <div class="container product-container">
+            <div class="product-image">
+                <div class="discount-badge">¡OFERTA LIMITADA!</div>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABZSURBVDhP7cxBCsAgDETR6P3P3KVLwS8QbJouCv0wEMh7Q0Q1s1prrbXWWv8vM1trrbXWWmuttdZaa6211lprrbXWWmuttdZaa6211lprrbXWWmuttdZaa6211lpr/QB8AQsQZ0Q0XwAAAABJRU5ErkJggg==" alt="ElectroClean - Aspiradora Inteligente">
+            </div>
+            
+            <div class="product-info">
+                <h2>ElectroClean Pro</h2>
+                <p>La revolución en limpieza del hogar ahora más accesible que nunca. Diseño ergonómico, potencia profesional y tecnología inteligente en un solo dispositivo.</p>
+                
+                <ul>
+                    <li>Sistema de succión ciclónica avanzada</li>
+                    <li>Navegación láser para mapeo preciso</li>
+                    <li>Capacidad de 0.9L con auto-vaciado</li>
+                    <li>5 modos de limpieza ajustables</li>
+                    <li>Base de carga automática</li>
+                    <li>Compatibilidad con ecosistemas inteligentes</li>
+                    <li>Garantía de 2 años</li>
+                </ul>
+                
+                <div class="price">
+                    <span class="original-price">$2,500</span>
+                    <span>$1,700</span>
+                    <span class="discount">32% OFF</span>
+                </div>
+                
+                <a href="#cta" class="btn">Comprar Ahora</a>
+                <p style="margin-top: 15px; font-size: 14px; color: #666;">Envío gratuito a todo el país | Pago seguro</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Opiniones de clientes</h2>
+                <p>Lo que dicen quienes ya usan ElectroClean</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="quote">
+                        "Después de probar varias marcas, ElectroClean superó todas mis expectativas. La potencia es increíble y la app es muy fácil de usar. ¡Recomendado 100%!"
+                    </div>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Laura Méndez">
+                        <div>
+                            <div class="client-name">Laura Méndez</div>
+                            <div class="client-rating">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="quote">
+                        "Como dueño de dos gatos, el pelo era un problema constante. ElectroClean lo elimina todo en un solo paso. El filtro HEPA hace una gran diferencia en mi alergia."
+                    </div>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Javier Torres">
+                        <div>
+                            <div class="client-name">Javier Torres</div>
+                            <div class="client-rating">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="quote">
+                        "Invertí en ElectroClean y valió cada peso. Mi casa de 150m² queda impecable en una sola carga. El modo programable es perfecto para mi horario."
+                    </div>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ana Rivera">
+                        <div>
+                            <div class="client-name">Ana Rivera</div>
+                            <div class="client-rating">★★★★☆</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta" id="cta">
+        <div class="container">
+            <h2>¡No pierdas esta oferta exclusiva!</h2>
+            <p>Por tiempo limitado, obtén tu ElectroClean Pro con un 32% de descuento. Garantía de satisfacción de 30 días o tu dinero de vuelta.</p>
+            <a href="#" class="btn btn-white">Comprar Ahora - $1,700</a>
+            <p style="margin-top: 20px; font-size: 14px;">Precio regular: $2,500 | Oferta válida hasta agotar existencias</p>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ElectroClean</h3>
+                    <p>Tecnología innovadora para un hogar más limpio con el mínimo esfuerzo.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Producto</h3>
+                    <ul>
+                        <li><a href="#features">Características</a></li>
+                        <li><a href="#product">Especificaciones</a></li>
+                        <li><a href="#testimonials">Opiniones</a></li>
+                        <li><a href="#cta">Ofertas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Soporte</h3>
+                    <ul>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Garantía</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Manual de usuario</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Términos y condiciones</a></li>
+                        <li><a href="#">Política de privacidad</a></li>
+                        <li><a href="#">Política de devoluciones</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 ElectroClean. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
