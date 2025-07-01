@@ -199,6 +199,7 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
         }
         
         .product-image img {
@@ -206,6 +207,7 @@
             max-height: 400px;
             object-fit: contain;
             border-radius: 5px;
+            width: 100%;
         }
         
         .product-info {
@@ -270,6 +272,10 @@
             display: inline-block;
             margin-bottom: 20px;
             font-size: 18px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 2;
         }
         
         /* Testimonials */
@@ -427,6 +433,13 @@
             .product-image {
                 margin-bottom: 30px;
             }
+            
+            .discount-badge {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 15px;
+            }
         }
     </style>
 </head>
@@ -504,7 +517,7 @@
         <div class="container product-container">
             <div class="product-image">
                 <div class="discount-badge">¡OFERTA LIMITADA!</div>
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABZSURBVDhP7cxBCsAgDETR6P3P3KVLwS8QbJouCv0wEMh7Q0Q1s1prrbXWWv8vM1trrbXWWmuttdZaa6211lprrbXWWmuttdZaa6211lprrbXWWmuttdZaa6211lpr/QB8AQsQZ0Q0XwAAAABJRU5ErkJggg==" alt="ElectroClean - Aspiradora Inteligente">
+                <img src="https://raw.githubusercontent.com/Elmat321/clean-electric/main/assets/imagensota.jpeg" alt="ElectroClean - Aspiradora Inteligente">
             </div>
             
             <div class="product-info">
@@ -637,4 +650,3 @@
     </footer>
 </body>
 </html>
-
